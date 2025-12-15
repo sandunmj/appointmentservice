@@ -8,6 +8,7 @@ import com.codein.appointmentservice.entity.Session;
 import com.codein.appointmentservice.repository.AppointmentRepository;
 import com.codein.appointmentservice.repository.SessionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +22,9 @@ public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final SessionRepository sessionRepository;
     private final RestTemplate restTemplate;
+    
+    @Value("${auth.service.url}")
+    private String authServiceUrl;
 
     @Transactional
     public AppointmentResponse createAppointment(CreateAppointmentRequest request, String token) {
@@ -105,7 +109,7 @@ public class AppointmentService {
         
         try {
             org.springframework.http.ResponseEntity<TokenValidationResponse> response = restTemplate.exchange(
-                    "http://localhost:8080/api/auth/validate-token",
+                    authServiceUrl,
                     org.springframework.http.HttpMethod.POST,
                     entity,
                     TokenValidationResponse.class

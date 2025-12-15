@@ -4,6 +4,7 @@ import com.codein.appointmentservice.dto.*;
 import com.codein.appointmentservice.entity.Session;
 import com.codein.appointmentservice.repository.SessionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,9 @@ public class SessionService {
 
     private final SessionRepository sessionRepository;
     private final RestTemplate restTemplate;
+    
+    @Value("${auth.service.url}")
+    private String authServiceUrl;
 
     public SessionResponse createSession(CreateSessionRequest request, String token) {
         TokenValidationResponse validation = validateToken(token);
@@ -72,7 +76,7 @@ public class SessionService {
 
         try {
             ResponseEntity<TokenValidationResponse> response = restTemplate.exchange(
-                    "http://localhost:8080/api/auth/validate-token",
+                    authServiceUrl,
                     HttpMethod.POST,
                     entity,
                     TokenValidationResponse.class
