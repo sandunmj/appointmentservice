@@ -84,6 +84,7 @@ public class SessionService {
     }
 
 
+    
 
     public List<SessionResponse> getDoctorSessions(String token) {
         TokenValidationResponse validation = validateToken(token);
