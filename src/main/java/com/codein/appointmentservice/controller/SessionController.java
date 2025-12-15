@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/sessions")
+@RequestMapping("/appointmentservice/api/sessions")
 @RequiredArgsConstructor
 public class SessionController {
 

@@ -8,6 +8,7 @@ import java.util.UUID;
 public record SessionResponse(
         UUID id,
         UUID doctorId,
+        String doctorName,
         LocalDate date,
         LocalTime startTime,
         LocalTime endTime,

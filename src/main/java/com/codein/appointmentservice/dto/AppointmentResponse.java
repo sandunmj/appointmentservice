@@ -9,5 +9,7 @@ public record AppointmentResponse(
     UUID sessionId,
     UUID patientId,
     LocalDateTime bookedAt,
-    Appointment.AppointmentStatus status
+    Appointment.AppointmentStatus status,
+    String patientName,
+    String doctorName
 ) {}

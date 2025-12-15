@@ -31,6 +31,9 @@ public class Appointment {
     @Column(name = "patient_id", nullable = false)
     private UUID patientId;
 
+    @Column(name = "patient_name", nullable = false)
+    private String patientName;
+
     @Builder.Default
     private LocalDateTime bookedAt = LocalDateTime.now();
 

@@ -1,0 +1,29 @@
+{
+  "family": "appointmentservice-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::169424236389:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "appointmentservice",
+      "image": "169424236389.dkr.ecr.ap-southeast-1.amazonaws.com/hospital_app/microservices:latest",
+      "portMappings": [
+        {
+          "containerPort": 8081,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/appointmentservice-task",
+          "awslogs-region": "ap-southeast-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}

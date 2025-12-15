@@ -7,6 +7,7 @@ public class TokenValidationResponse {
     private String role;
     private boolean valid;
     private UUID userId;
+    private String name;
 
     public String getEmail() {
         return email;
@@ -38,5 +39,13 @@ public class TokenValidationResponse {
 
     public void setUserId(UUID userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -42,6 +42,7 @@ public class SessionService {
 
         Session session = Session.builder()
                 .doctorId(request.getDoctorId())
+                .doctorName(validation.getName())
                 .date(request.getSessionStartTime().toLocalDate())
                 .startTime(request.getSessionStartTime().toLocalTime())
                 .endTime(request.getSessionEndTime().toLocalTime())
@@ -54,6 +55,7 @@ public class SessionService {
         return new SessionResponse(
                 saved.getId(),
                 saved.getDoctorId(),
+                saved.getDoctorName(),
                 saved.getDate(),
                 saved.getStartTime(),
                 saved.getEndTime(),
@@ -95,6 +97,7 @@ public class SessionService {
                 .map(s -> new SessionResponse(
                         s.getId(),
                         s.getDoctorId(),
+                        s.getDoctorName(),
                         s.getDate(),
                         s.getStartTime(),
                         s.getEndTime(),
@@ -118,6 +121,7 @@ public class SessionService {
                 .map(s -> new SessionResponse(
                         s.getId(),
                         s.getDoctorId(),
+                        s.getDoctorName(),
                         s.getDate(),
                         s.getStartTime(),
                         s.getEndTime(),
@@ -126,5 +130,7 @@ public class SessionService {
                         s.getBookedCount()))
                 .toList();
     }
+    
+
 }
 
