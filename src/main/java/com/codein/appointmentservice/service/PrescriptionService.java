@@ -11,6 +11,7 @@ import com.codein.appointmentservice.repository.PrescriptionRepository;
 import com.codein.appointmentservice.repository.SessionRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,6 +27,9 @@ public class PrescriptionService {
     private final SessionRepository sessionRepository;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    
+    @Value("${auth.service.url}")
+    private String authServiceUrl;
 
     public PrescriptionResponse createPrescription(CreatePrescriptionRequest request, String token) {
         TokenValidationResponse validation = validateToken(token);
@@ -76,7 +80,7 @@ public class PrescriptionService {
         
         try {
             org.springframework.http.ResponseEntity<TokenValidationResponse> response = restTemplate.exchange(
-                    "http://localhost:8080/api/auth/validate-token",
+                    authServiceUrl,
                     org.springframework.http.HttpMethod.POST,
                     entity,
                     TokenValidationResponse.class
