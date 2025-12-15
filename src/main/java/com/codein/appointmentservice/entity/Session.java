@@ -21,6 +21,7 @@ public class Session {
     private UUID id;
 
     private UUID doctorId;                 // reference to userservice doctor id
+    private String doctorEmail;
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -55,6 +56,14 @@ public class Session {
 
     public void setDoctorId(UUID doctorId) {
         this.doctorId = doctorId;
+    }
+
+    public String getDoctorEmail() {
+        return doctorEmail;
+    }
+
+    public void setDoctorEmail(String doctorEmail) {
+        this.doctorEmail = doctorEmail;
     }
 
     public LocalDate getDate() {

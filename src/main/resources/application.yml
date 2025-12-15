@@ -5,3 +5,11 @@ spring:
       password: admin123
 server:
   port: 8081
+
+logging:
+  level:
+    com.codein.appointmentservice: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
